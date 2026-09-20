@@ -24,7 +24,7 @@ Pure demonstration: no data is transmitted or stored; the bank entity is fiction
 
 ## Capabilities and Constraints
 
-- Fields (confirmed): full name, email, phone, date of birth, nationality; employment status (select); source of funds (Business Income / Employment Income / Inheritance / Other, with a conditional required "specify" input for Other); account type (radio group: Private Savings, Premier Current, Fixed Term Deposit); initial deposit (currency + amount); residential address (street, city, postal code, country); declaration checkbox.
+- Fields (confirmed): full name, email, phone, date of birth, nationality; employment status (select); source of funds (Business Income / Employment Income / Inheritance / Other, with a conditional required "specify" input for Other); account type (radio group: Private Savings, Premier Current, Fixed Term Deposit); initial deposit (currency + amount); residential address (street, city, postal code, country). Declaration checkbox removed at user request 2026-09-20.
 - Submit behavior (confirmed): JS-intercepted validation with inline errors, brief processing state, then the form swaps to a success panel with a generated reference number and a reset option.
 - Responsive, semantic, keyboard accessible; reduced-motion respected.
 - Footer carries real product links (confirmed 2026-09-20): Privacy Policy → https://www.talkyform.com/privacy, Terms of Service → https://www.talkyform.com/terms.

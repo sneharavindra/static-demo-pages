@@ -289,58 +289,10 @@
   .reveal.open{grid-template-rows:1fr;opacity:1}
   .reveal .field{padding-top:14px}
 
-  .declare{
-    display:flex;
-    gap:14px;
-    align-items:flex-start;
-    border:1px solid rgba(27,40,54,.14);
-    border-radius:2px;
-    padding:16px;
-    margin:30px 0 26px;
-    position:relative;
-    cursor:pointer;
-    text-transform:none;
-    letter-spacing:0;
-    font-size:13.5px;
-    font-weight:400;
-    color:var(--muted-paper);
-  }
-  .declare input{
-    position:absolute;
-    opacity:0;
-    inset:0;
-    margin:0;
-    cursor:pointer;
-  }
-  .declare .box{
-    flex:none;
-    width:18px;height:18px;
-    border:1.5px solid var(--line-strong);
-    border-radius:2px;
-    margin-top:2px;
-    background:var(--paper-hi);
-    position:relative;
-    transition:border-color .18s ease,background .18s ease;
-  }
-  .declare input:checked ~ .box{
-    background:var(--navy-900);
-    border-color:var(--navy-900);
-  }
-  .declare input:checked ~ .box::after{
-    content:"";
-    position:absolute;
-    width:5px;height:10px;
-    border:solid var(--gold);
-    border-width:0 2px 2px 0;
-    transform:translate(6px,3px) rotate(45deg);
-  }
-  .declare input:focus-visible ~ .box{outline:2px solid var(--gold);outline-offset:2px}
-  .declare.invalid{border-color:var(--err-line)}
-  .declare .err{flex-basis:100%}
-
   .actions{
     display:flex;
     justify-content:stretch;
+    margin-top:30px;
   }
   .primary{
     font-family:var(--sans);
@@ -696,13 +648,6 @@
         <input type="text" id="country" name="country" autocomplete="country-name" required aria-describedby="country-err" data-err="Enter your country of residence.">
         <span class="err" id="country-err"></span>
       </p>
-
-      <label class="declare field">
-        <input type="checkbox" id="declaration" name="declaration" required aria-describedby="declaration-err" data-err="Please confirm the declaration before submitting your application.">
-        <span class="box" aria-hidden="true"></span>
-        I confirm the information given is accurate and complete, and I authorise Berkyshire Capital Private Bank to verify it as part of this application.
-        <span class="err" id="declaration-err"></span>
-      </label>
 
       <p class="actions">
         <button type="submit" class="ghost" id="submitBtn">

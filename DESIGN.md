@@ -151,7 +151,7 @@ A two-ground palette: a midnight-navy world with a single champagne-gold accent,
 
 ### Neutral
 - **Midnight Ground** (`navy-950`, #0A1524): page background and theme color.
-- **Midnight Panel** (`navy-900`, #0E1B2E): the primary button and the checked declaration box — navy reappears on paper only as the action and the mark of consent.
+- **Midnight Panel** (`navy-900`, #0E1B2E): the primary button — navy reappears on paper only as the action.
 - **Midnight Edge** (`navy-800`, #14233A): primary button border.
 - **Instrument Ink** (`ink`, #1B2836): primary text on paper and selected-state borders.
 - **Champagne Ivory** (`champagne`, #EDE6D6): light text on navy (wordmark, button label).
@@ -228,7 +228,6 @@ Near-square engraved geometry: every corner on the instrument is 2px — panel, 
 ### Cards / Containers
 - **Account rows:** paper-hi row, 1px hairline border, 14px/16px padding, 18px radio dot with a gold fill that scales in on check; checked row takes ink border plus the focus halo ring (inset 1px ink + 3px gold-soft). Serif title over muted small text.
 - **Paper instrument:** ivory paper (paper), 2px radius, breathing clamp padding, inset hairline frame with gold corner stops, ghosted rosette watermark (4.5% ink), settling in over 0.55s.
-- **Declaration:** hairline-bordered strip (rgba ink .14), 16px padding, 18px checkbox box that fills midnight-navy with a champagne check glyph when consented.
 
 ### Inputs / Fields
 - **Style:** paper-hi well, 1px hairline border, 2px radius, 11px/13px padding, 16px sans in ink, bronze caret, tabular figures.
