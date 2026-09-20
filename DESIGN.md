@@ -18,6 +18,13 @@ colors:
   muted-navy: "#A7B6C6"
   err: "#8E2F2F"
   err-line: "#9E3B3B"
+  err-wash: "#FBF4EF"
+  placeholder: "#6E6959"
+  scrollbar: "#2A3B52"
+  scrollbar-hover: "#3A4E6A"
+  disclaimer: "#8DA0B4"
+  link-hover: "#E3D3AC"
+  shadow-hover: "rgba(0,0,0,.45)"
 typography:
   display:
     fontFamily: "Marcellus, Georgia, Times New Roman, serif"
@@ -50,9 +57,30 @@ typography:
     fontSize: "11.5px"
     fontWeight: 600
     letterSpacing: "0.1em"
+  note:
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontSize: "13px"
+    fontWeight: 400
+  caption:
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontSize: "12.5px"
+    fontWeight: 400
+  small:
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    fontSize: "13.5px"
+    fontWeight: 400
+  success-h2:
+    fontFamily: "Marcellus, Georgia, Times New Roman, serif"
+    fontSize: "clamp(24px,4vw,30px)"
+    fontWeight: 400
+  seal-glyph:
+    fontFamily: "Marcellus, Georgia, Times New Roman, serif"
+    fontSize: "52px"
+    fontWeight: 400
 rounded:
   frame: "1px"
   instrument: "2px"
+  scrollbar-thumb: "5px"
 spacing:
   sm: "10px"
   md: "18px"
@@ -164,7 +192,7 @@ A two-ground palette: a midnight-navy world with a single champagne-gold accent,
 
 A single centered column: page max-width 880px with 48px/20px outer padding, opened by a radial glow (#12233B at 50% -80px) behind an engraved masthead (wordmark between fading gold rules, ghosted guilloche rosette at 7% opacity). The instrument's padding breathes with the viewport (clamp(28px,6vw,56px) × clamp(22px,6vw,60px)).
 
-Inside the document: sections separate on 1px ink-alpha rules (rgba(27,40,54,.14)) at 34px top rhythm; each legend runs a gold leader line to the right edge. Field pairs sit on a 1fr/1fr grid with an 18px gap; the deposit row is 130px + 1fr; chips and account rows stack at 10px gaps. At ≤560px all rows collapse to one column and the primary button goes full-width. Conditional fields expand via a `grid-template-rows: 0fr → 1fr` reveal over 0.3s.
+Inside the document, fields stack in a single full-width column at an 18px rhythm beneath small-cap labels; radio groups render as bordered option labels (inline chips for short sets, stacked rows for account types) with drawn dot markers, and conditional fields expand via a `grid-template-rows: 0fr → 1fr` reveal over 0.3s. The conversational launch owns the head of the document: the primary plate, full-width, centered beneath the introduction with a muted hint line and a hairline separator before the first field. The manual submit waits at the foot as a ghost. At ≤560px nothing changes — the column was already single.
 
 ### Named Rules
 **The Single Instrument Rule.** One paper instrument per view carries all content; the navy carries only the masthead, the footer disclaimer, and ambient glow. Content never floats on navy.
@@ -190,9 +218,8 @@ Near-square engraved geometry: every corner on the instrument is 2px — panel, 
 
 ### Buttons
 - **Shape:** 2px radius, squared engraved plate.
-- **Primary:** midnight panel (navy-900) on champagne ivory text, 1px midnight-edge border, padding 15px 34px, label 13px/600/.18em uppercase; hosts a 15px gold-top spinner while processing (opacity .92, "Processing" label).
-- **Hover / Focus:** lifts 1px, border turns gold, gains the hover lift shadow; focus is a 2px gold outline at 3px offset. Active settles back to none.
-- **Ghost:** transparent with 1px hairline border, muted-paper text (12.5px, .08em), padding 11px 20px; hover deepens border and text to ink ("Copy", "Submit another application").
+- **Primary:** the conversational launch — midnight panel (navy-900) on champagne ivory text, 1px midnight-edge border, full-width, padding 15px 34px, label 13px/600/.18em uppercase. Hover lifts 1px, border turns gold, gains the hover lift shadow; focus is a 2px gold outline at 3px offset. The widget manages its own connecting/connected state text on it.
+- **Ghost:** the manual submit ("Open my account", full-width, 12.5px/600 uppercase) and the small utilities ("Copy", "Submit another application") — transparent with 1px hairline border, muted-paper text, padding 13px 20px; hover deepens border and text to ink. The submit hosts the 15px gold-top spinner while processing (opacity .92, "Processing" label).
 
 ### Chips
 - **Style:** paper-hi well, 1px hairline border, muted-paper text (13.5px), padding 8px 16px; radio inputs visually hidden.
@@ -212,7 +239,7 @@ Near-square engraved geometry: every corner on the instrument is 2px — panel, 
 No navigation; the masthead (wordmark, gold rules, ghosted rosette) and the footer disclaimer (centered, gold-haired rule, gold links) frame the instrument.
 
 ### Conversational Launch
-Below the form's foot sits the TalkyForm entry: a ghost-family button (uppercase 12px/600, .12em tracking, 12px 28px padding) labeled "Start Conversation", centered between two 1px ink-alpha hairlines on an 18px-gapped flex row with 28px top rhythm. The block hides when the success panel shows and returns on reset. The avatar widget itself is third-party chrome (deferred script, data-talkyform-id on the form) and inherits none of the instrument's styles; only the launch control belongs to the system.
+The TalkyForm entry is the document's primary action: the full-width primary plate ("Start Conversation") centered directly beneath the introduction, with a muted 13px hint line beneath it ("The assistant fills this form in with you, or complete it yourself below.") and a 1px ink-alpha separator before the first field. The block hides when the success panel shows and returns on reset. The avatar widget itself is third-party chrome (deferred script, data-talkyform-id, form marked `data-talkyform="enabled"`) and inherits none of the instrument's styles; only the launch control belongs to the system.
 
 ### Reeded Seal
 The success moment: a 128px SVG seal whose concentric circles stroke-draw over 1.1s in 0.25s staggered waves (pathLength 100), the outer reeded ring dashed, before the bronze Marcellus monogram fades up in place. Gold throughout; the document's only figurative gold.

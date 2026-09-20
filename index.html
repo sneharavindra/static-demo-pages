@@ -50,7 +50,7 @@
   ::-webkit-scrollbar-thumb:hover{background:#3A4E6A}
 
   .page{
-    max-width:880px;
+    max-width:760px;
     margin:0 auto;
     padding:48px 20px 40px;
     background:
@@ -152,7 +152,7 @@
     to{opacity:1;transform:none}
   }
 
-  .head{margin-bottom:38px;max-width:56ch}
+  .head{margin-bottom:26px;max-width:56ch}
   .head h1{
     font-family:var(--serif);
     font-weight:400;
@@ -164,33 +164,24 @@
   }
   .head p{font-size:15px;color:var(--muted-paper)}
 
-  fieldset{border:none}
-  .section{padding-top:34px;border-top:1px solid rgba(27,40,54,.14)}
-  .section:first-of-type{padding-top:0;border-top:none}
-  .section legend{
-    font-family:var(--serif);
-    font-size:15px;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-    color:var(--ink);
-    display:flex;
-    align-items:center;
-    gap:16px;
-    width:100%;
-    padding:22px 0 18px;
-    float:left;
+  .talky-launch{
+    text-align:center;
+    margin:0 0 34px;
+    padding-bottom:30px;
+    border-bottom:1px solid rgba(27,40,54,.14);
   }
-  .section:first-of-type legend{padding-top:0}
-  .section legend::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:linear-gradient(to right,rgba(198,169,108,.75),rgba(198,169,108,.12));
+  .talky-hint{
+    font-size:13px;
+    color:var(--muted-paper);
+    margin-top:10px;
   }
 
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .field{margin-bottom:18px}
-  .field label{
+  form > p + p,
+  form > div + p,
+  form > p + div,
+  form > div + div{margin-top:18px}
+  form .grouplabel + .opts{margin-top:7px}
+  label{
     display:block;
     font-size:11.5px;
     font-weight:600;
@@ -236,48 +227,57 @@
   }
   .err.shown{display:block}
   .grouplabel{
-    display:block;
     font-size:11.5px;
     font-weight:600;
     letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--bronze);
-    margin-bottom:7px;
   }
-  .invalid input,.invalid select{border-color:var(--err-line);background:#FBF4EF}
-  .invalid input:focus,.invalid select:focus{box-shadow:0 0 0 3px rgba(158,59,59,.15)}
 
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px}
-  .chip{
+  .opts{display:flex;flex-wrap:wrap;gap:10px}
+  .opts.stack{flex-direction:column}
+  .opt{
     position:relative;
-    cursor:pointer;
-  }
-  .chip input{
-    position:absolute;
-    opacity:0;
-    width:100%;height:100%;
-    margin:0;
-    cursor:pointer;
-  }
-  .chip span{
-    display:inline-block;
-    font-size:13.5px;
-    letter-spacing:.02em;
-    color:var(--muted-paper);
+    display:flex;
+    align-items:center;
+    gap:10px;
     border:1px solid var(--line);
     border-radius:2px;
     background:var(--paper-hi);
-    padding:8px 16px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-size:14.5px;
+    color:var(--muted-paper);
     transition:border-color .18s ease,color .18s ease,box-shadow .18s ease;
   }
-  .chip:hover span{border-color:var(--line-strong);color:var(--ink)}
-  .chip input:checked + span{
-    border-color:var(--ink);
-    color:var(--ink);
-    background:#FFFDF6;
-    box-shadow:inset 0 -2px 0 var(--gold);
+  .opts.stack .opt{padding:13px 16px}
+  .opt:hover{border-color:var(--line-strong);color:var(--ink)}
+  .opt input{
+    position:absolute;
+    opacity:0;
+    inset:0;
+    margin:0;
+    cursor:pointer;
   }
-  .chip input:focus-visible + span{outline:2px solid var(--gold);outline-offset:2px}
+  .opt span{display:flex;align-items:center;gap:10px}
+  .opt span::before{
+    content:"";
+    flex:none;
+    width:16px;height:16px;
+    border-radius:50%;
+    border:1.5px solid var(--line-strong);
+    transition:border-color .18s ease;
+  }
+  .opt input:checked + span{color:var(--ink)}
+  .opt input:checked + span::before{
+    border-color:var(--ink);
+    background:radial-gradient(circle,var(--gold) 0 4px,transparent 4.5px);
+  }
+  .opt input:focus-visible + span::before{outline:2px solid var(--gold);outline-offset:2px}
+  .opt:has(input:checked){
+    border-color:var(--ink);
+    box-shadow:0 0 0 1px var(--ink) inset,0 0 0 3px var(--gold-soft);
+  }
 
   .reveal{
     display:grid;
@@ -287,68 +287,7 @@
   }
   .reveal > .reveal-inner{overflow:hidden}
   .reveal.open{grid-template-rows:1fr;opacity:1}
-  .reveal .field{margin-bottom:0;padding-top:14px}
-  .reveal.open .field{margin-bottom:18px}
-
-  .acct-list{display:grid;gap:10px;margin-bottom:6px}
-  .acct{
-    position:relative;
-    display:flex;
-    gap:14px;
-    align-items:flex-start;
-    border:1px solid var(--line);
-    border-radius:2px;
-    background:var(--paper-hi);
-    padding:14px 16px 14px 14px;
-    cursor:pointer;
-    transition:border-color .18s ease,box-shadow .18s ease;
-  }
-  .acct:hover{border-color:var(--line-strong)}
-  .acct input{
-    position:absolute;
-    opacity:0;
-    inset:0;
-    margin:0;
-    cursor:pointer;
-  }
-  .acct .dot{
-    flex:none;
-    width:18px;height:18px;
-    border-radius:50%;
-    border:1.5px solid var(--line-strong);
-    margin-top:2px;
-    position:relative;
-    transition:border-color .18s ease;
-  }
-  .acct .dot::after{
-    content:"";
-    position:absolute;
-    inset:3px;
-    border-radius:50%;
-    background:var(--gold);
-    transform:scale(0);
-    transition:transform .2s cubic-bezier(.16,1,.3,1);
-  }
-  .acct input:checked ~ .dot{border-color:var(--ink)}
-  .acct input:checked ~ .dot::after{transform:scale(1)}
-  .acct input:focus-visible ~ .dot{outline:2px solid var(--gold);outline-offset:2px}
-  .acct strong{
-    display:block;
-    font-family:var(--serif);
-    font-weight:400;
-    font-size:16.5px;
-    letter-spacing:.02em;
-    color:var(--ink);
-  }
-  .acct small{
-    display:block;
-    font-size:13.5px;
-    color:var(--muted-paper);
-    margin-top:2px;
-  }
-  .acct:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 1px var(--ink) inset,0 0 0 3px var(--gold-soft)}
-
-  .deposit-row{display:grid;grid-template-columns:130px 1fr;gap:18px}
+  .reveal .field{padding-top:14px}
 
   .declare{
     display:flex;
@@ -360,6 +299,11 @@
     margin:30px 0 26px;
     position:relative;
     cursor:pointer;
+    text-transform:none;
+    letter-spacing:0;
+    font-size:13.5px;
+    font-weight:400;
+    color:var(--muted-paper);
   }
   .declare input{
     position:absolute;
@@ -375,6 +319,7 @@
     border-radius:2px;
     margin-top:2px;
     background:var(--paper-hi);
+    position:relative;
     transition:border-color .18s ease,background .18s ease;
   }
   .declare input:checked ~ .box{
@@ -390,15 +335,12 @@
     transform:translate(6px,3px) rotate(45deg);
   }
   .declare input:focus-visible ~ .box{outline:2px solid var(--gold);outline-offset:2px}
-  .declare p{font-size:13.5px;color:var(--muted-paper)}
   .declare.invalid{border-color:var(--err-line)}
-  .declare-err.shown{margin:-16px 0 20px}
+  .declare .err{flex-basis:100%}
 
   .actions{
     display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    gap:18px;
+    justify-content:stretch;
   }
   .primary{
     font-family:var(--sans);
@@ -412,10 +354,7 @@
     border-radius:2px;
     padding:15px 34px;
     cursor:pointer;
-    position:relative;
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
+    width:100%;
     transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
   }
   .primary:hover{
@@ -425,37 +364,43 @@
   }
   .primary:active{transform:none}
   .primary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .ghost{
+    font-family:var(--sans);
+    font-size:12.5px;
+    letter-spacing:.08em;
+    color:var(--muted-paper);
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:13px 20px;
+    cursor:pointer;
+    transition:border-color .18s ease,color .18s ease;
+  }
+  .ghost:hover{border-color:var(--ink);color:var(--ink)}
+  .ghost:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  #submitBtn{
+    width:100%;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:12.5px;
+    font-weight:600;
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+  }
   .spinner{
     display:none;
     width:15px;height:15px;
     border-radius:50%;
-    border:2px solid rgba(237,230,214,.25);
+    border:2px solid rgba(90,83,67,.25);
     border-top-color:var(--gold);
     animation:spin .7s linear infinite;
   }
-  .primary.loading{cursor:wait;opacity:.92}
-  .primary.loading .spinner{display:inline-block}
+  #submitBtn.loading{cursor:wait;opacity:.92}
+  #submitBtn.loading .spinner{display:inline-block}
   @keyframes spin{to{transform:rotate(360deg)}}
-
-  .talky-launch{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    margin-top:28px;
-  }
-  .talky-launch::before,.talky-launch::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:rgba(27,40,54,.14);
-  }
-  .talky-btn{
-    padding:12px 28px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    font-size:12px;
-    font-weight:600;
-  }
 
   .success{
     text-align:center;
@@ -535,20 +480,6 @@
     color:var(--ink);
     font-variant-numeric:tabular-nums;
   }
-  .ghost{
-    font-family:var(--sans);
-    font-size:12.5px;
-    letter-spacing:.08em;
-    color:var(--muted-paper);
-    background:transparent;
-    border:1px solid var(--line);
-    border-radius:2px;
-    padding:11px 20px;
-    cursor:pointer;
-    transition:border-color .18s ease,color .18s ease;
-  }
-  .ghost:hover{border-color:var(--ink);color:var(--ink)}
-  .ghost:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   .success .tiny{
     font-size:12px;
     color:var(--muted-paper);
@@ -589,12 +520,6 @@
   .disclaimer a:hover{color:#E3D3AC;text-decoration-color:#E3D3AC}
   .disclaimer a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
-  @media (max-width:560px){
-    .row,.deposit-row{grid-template-columns:1fr}
-    .actions{justify-content:stretch}
-    .primary{width:100%;justify-content:center}
-    .paper-watermark{width:170px;height:170px;top:-16px;right:-16px}
-  }
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
     html{scroll-behavior:auto}
@@ -606,7 +531,7 @@
   THESIS: A private-bank account mandate rendered as an engraved paper instrument laid on midnight navy — refusing the generic dark-mode fintech form.
   OWN-WORLD: Ivory document panel with inset hairline frame, guilloche rosette watermark, Marcellus inscriptional caps, champagne-gold rules, bronze small-cap labels, 2px corners, reeded seal.
   STORY: An applicant completes personal, source-of-funds, and account-preference entries on a credible banking document; submission draws a gold seal and issues a reference number.
-  FIRST VIEWPORT: Navy ground with engraved wordmark and gold rules above the ivory mandate panel; h1 plus personal-details fields fill the first screen; the primary action sits at the document's foot.
+  FIRST VIEWPORT: Navy ground with engraved wordmark and gold rules above the ivory mandate panel; h1, the primary conversational action directly beneath the introduction, then personal-details fields; the manual submit waits at the document's foot as a secondary plate.
   FORM: Document-led private-banking classic, user-pinned (luxury navy/gold serif); brief-pinned direction, no roll dealt.
   FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 -->
@@ -650,194 +575,142 @@
       <p>Complete the mandate below to begin your relationship with Berkyshire Capital. It takes about five minutes.</p>
     </div>
 
+    <div class="talky-launch" id="talkyLaunch">
+      <button type="button" data-talkyform="launch" class="primary talky-btn">Start Conversation</button>
+      <p class="talky-hint">The assistant fills this form in with you, or complete it yourself below.</p>
+    </div>
+
     <form id="accountForm" data-talkyform="enabled" novalidate>
-      <fieldset class="section">
-        <legend>Personal Details</legend>
+      <p class="field">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="e.g. Alexandra M. Rowe" required aria-describedby="fullName-err" data-err="Enter your full legal name as it appears on your identification.">
+        <span class="err" id="fullName-err"></span>
+      </p>
 
-        <div class="field">
-          <label for="fullName">Full name</label>
-          <input aria-describedby="fullName-err" type="text" id="fullName" name="fullName" autocomplete="name" placeholder="e.g. Alexandra M. Rowe" required data-err="Enter your full legal name as it appears on your identification.">
-          <p class="err" id="fullName-err"></p>
+      <p class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-err" data-err="Enter your email address so we can reach you." data-err-type="Enter an address in the format name@example.com.">
+        <span class="err" id="email-err"></span>
+      </p>
+
+      <p class="field">
+        <label for="phone">Telephone</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+44 20 7946 0000" pattern="[0-9+()\-\s]{7,20}" required aria-describedby="phone-err" data-err="Enter a telephone number we can reach you on." data-err-pattern="Enter a number in an international format, e.g. +44 20 7946 0000.">
+        <span class="err" id="phone-err"></span>
+      </p>
+
+      <p class="field">
+        <label for="dob">Date of birth</label>
+        <input type="date" id="dob" name="dob" autocomplete="bday" required aria-describedby="dob-err" data-err="Enter your date of birth." data-err-max="Applicants must be at least 18 years old.">
+        <span class="err" id="dob-err"></span>
+      </p>
+
+      <p class="field">
+        <label for="nationality">Nationality</label>
+        <input type="text" id="nationality" name="nationality" placeholder="e.g. British" required aria-describedby="nationality-err" data-err="Enter your nationality.">
+        <span class="err" id="nationality-err"></span>
+      </p>
+
+      <p class="field">
+        <label for="employment">Employment status</label>
+        <select id="employment" name="employment" required aria-describedby="employment-err" data-err="Select your current employment status.">
+          <option value="" selected disabled>Select a status</option>
+          <option>Employed</option>
+          <option>Self-employed</option>
+          <option>Business owner</option>
+          <option>Retired</option>
+          <option>Student</option>
+          <option>Homemaker</option>
+          <option>Not currently employed</option>
+        </select>
+        <span class="err" id="employment-err"></span>
+      </p>
+
+      <div class="field">
+        <p class="grouplabel" id="sourceLabel">Source of funds</p>
+        <div class="opts" role="radiogroup" aria-labelledby="sourceLabel">
+          <label class="opt"><input type="radio" name="sourceFunds" value="Business Income" required aria-describedby="sourceFunds-err" data-err="Select the principal source of the funds for this account."><span>Business Income</span></label>
+          <label class="opt"><input type="radio" aria-describedby="sourceFunds-err" name="sourceFunds" value="Employment Income"><span>Employment Income</span></label>
+          <label class="opt"><input type="radio" aria-describedby="sourceFunds-err" name="sourceFunds" value="Inheritance"><span>Inheritance</span></label>
+          <label class="opt"><input type="radio" aria-describedby="sourceFunds-err" name="sourceFunds" value="Other"><span>Other</span></label>
         </div>
-
-        <div class="row">
-          <div class="field">
-            <label for="email">Email address</label>
-            <input aria-describedby="email-err" type="email" id="email" name="email" autocomplete="email" required data-err="Enter your email address so we can reach you." data-err-type="Enter an address in the format name@example.com.">
-            <p class="err" id="email-err"></p>
-          </div>
-          <div class="field">
-            <label for="phone">Telephone</label>
-            <input aria-describedby="phone-err" type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+44 20 7946 0000" pattern="[0-9+()\-\s]{7,20}" required data-err="Enter a telephone number we can reach you on." data-err-pattern="Enter a number in an international format, e.g. +44 20 7946 0000.">
-            <p class="err" id="phone-err"></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label for="dob">Date of birth</label>
-            <input aria-describedby="dob-err" type="date" id="dob" name="dob" autocomplete="bday" required data-err="Enter your date of birth." data-err-max="Applicants must be at least 18 years old.">
-            <p class="err" id="dob-err"></p>
-          </div>
-          <div class="field">
-            <label for="nationality">Nationality</label>
-            <input aria-describedby="nationality-err" type="text" id="nationality" name="nationality" placeholder="e.g. British" required data-err="Enter your nationality.">
-            <p class="err" id="nationality-err"></p>
-          </div>
-        </div>
-      </fieldset>
-
-      <fieldset class="section">
-        <legend>Employment &amp; Source of Funds</legend>
-
-        <div class="field">
-          <label for="employment">Employment status</label>
-          <select aria-describedby="employment-err" id="employment" name="employment" required data-err="Select your current employment status.">
-            <option value="" selected disabled>Select a status</option>
-            <option>Employed</option>
-            <option>Self-employed</option>
-            <option>Business owner</option>
-            <option>Retired</option>
-            <option>Student</option>
-            <option>Homemaker</option>
-            <option>Not currently employed</option>
-          </select>
-          <p class="err" id="employment-err"></p>
-        </div>
-
-        <div class="field">
-          <span class="grouplabel" id="sourceLabel">Source of funds</span>
-          <div class="chips" role="radiogroup" aria-labelledby="sourceLabel">
-            <label class="chip">
-              <input aria-describedby="sourceFunds-err" type="radio" name="sourceFunds" value="Business Income" required data-err="Select the principal source of the funds for this account.">
-              <span>Business Income</span>
-            </label>
-            <label class="chip">
-              <input aria-describedby="sourceFunds-err" type="radio" name="sourceFunds" value="Employment Income">
-              <span>Employment Income</span>
-            </label>
-            <label class="chip">
-              <input aria-describedby="sourceFunds-err" type="radio" name="sourceFunds" value="Inheritance">
-              <span>Inheritance</span>
-            </label>
-            <label class="chip">
-              <input aria-describedby="sourceFunds-err" type="radio" name="sourceFunds" value="Other">
-              <span>Other</span>
-            </label>
-          </div>
-          <div class="reveal" id="otherWrap">
-            <div class="reveal-inner">
-              <div class="field">
-                <label for="otherSource">Please specify</label>
-                <input aria-describedby="otherSource-err" type="text" id="otherSource" name="otherSource" disabled autocomplete="off" data-err="Tell us the principal source of your funds.">
-                <p class="err" id="otherSource-err"></p>
-              </div>
-            </div>
-          </div>
-          <p class="err" id="sourceFunds-err"></p>
-        </div>
-      </fieldset>
-
-      <fieldset class="section">
-        <legend>Account Preferences</legend>
-
-        <div class="field">
-          <span class="grouplabel" id="acctLabel">Account type</span>
-          <div class="acct-list" role="radiogroup" aria-labelledby="acctLabel">
-            <label class="acct">
-              <input aria-describedby="accountType-err" type="radio" name="accountType" value="Private Savings" required data-err="Select the account you would like to open.">
-              <span class="dot" aria-hidden="true"></span>
-              <span class="acct-body">
-                <strong>Private Savings</strong>
-                <small>Everyday access with tiered preferential rates</small>
-              </span>
-            </label>
-            <label class="acct">
-              <input aria-describedby="accountType-err" type="radio" name="accountType" value="Premier Current">
-              <span class="dot" aria-hidden="true"></span>
-              <span class="acct-body">
-                <strong>Premier Current</strong>
-                <small>A day-to-day account with dedicated relationship support</small>
-              </span>
-            </label>
-            <label class="acct">
-              <input aria-describedby="accountType-err" type="radio" name="accountType" value="Fixed Term Deposit">
-              <span class="dot" aria-hidden="true"></span>
-              <span class="acct-body">
-                <strong>Fixed Term Deposit</strong>
-                <small>A defined term with a fixed rate at maturity</small>
-              </span>
-            </label>
-          </div>
-          <p class="err" id="accountType-err"></p>
-        </div>
-
-        <div class="deposit-row">
-          <div class="field">
-            <label for="currency">Currency</label>
-            <select aria-describedby="currency-err" id="currency" name="currency" required data-err="Select the currency for your account.">
-              <option value="GBP" selected>GBP £</option>
-              <option value="USD">USD $</option>
-              <option value="EUR">EUR €</option>
-              <option value="CHF">CHF</option>
-            </select>
-            <p class="err" id="currency-err"></p>
-          </div>
-          <div class="field">
-            <label for="deposit">Initial deposit</label>
-            <input aria-describedby="deposit-err" type="number" id="deposit" name="deposit" inputmode="numeric" min="10000" step="500" placeholder="10,000" required data-err="Enter your intended initial deposit." data-err-min="The minimum initial deposit is 10,000 in your chosen currency.">
-            <p class="err" id="deposit-err"></p>
+        <div class="reveal" id="otherWrap">
+          <div class="reveal-inner">
+            <p class="field">
+              <label for="otherSource">Please specify</label>
+              <input type="text" id="otherSource" name="otherSource" disabled autocomplete="off" aria-describedby="otherSource-err" data-err="Tell us the principal source of your funds.">
+              <span class="err" id="otherSource-err"></span>
+            </p>
           </div>
         </div>
-      </fieldset>
+        <span class="err" id="sourceFunds-err"></span>
+      </div>
 
-      <fieldset class="section">
-        <legend>Residential Address</legend>
-
-        <div class="field">
-          <label for="street">Street address</label>
-          <input aria-describedby="street-err" type="text" id="street" name="street" autocomplete="street-address" placeholder="House number and street" required data-err="Enter your residential street address.">
-          <p class="err" id="street-err"></p>
+      <div class="field">
+        <p class="grouplabel" id="acctLabel">Account type</p>
+        <div class="opts stack" role="radiogroup" aria-labelledby="acctLabel">
+          <label class="opt"><input type="radio" name="accountType" value="Private Savings" required aria-describedby="accountType-err" data-err="Select the account you would like to open."><span>Private Savings</span></label>
+          <label class="opt"><input type="radio" aria-describedby="accountType-err" name="accountType" value="Premier Current"><span>Premier Current</span></label>
+          <label class="opt"><input type="radio" aria-describedby="accountType-err" name="accountType" value="Fixed Term Deposit"><span>Fixed Term Deposit</span></label>
         </div>
+        <span class="err" id="accountType-err"></span>
+      </div>
 
-        <div class="row">
-          <div class="field">
-            <label for="city">City</label>
-            <input aria-describedby="city-err" type="text" id="city" name="city" autocomplete="address-level2" required data-err="Enter your city.">
-            <p class="err" id="city-err"></p>
-          </div>
-          <div class="field">
-            <label for="postal">Postal code</label>
-            <input aria-describedby="postal-err" type="text" id="postal" name="postal" autocomplete="postal-code" required data-err="Enter your postal code.">
-            <p class="err" id="postal-err"></p>
-          </div>
-        </div>
+      <p class="field">
+        <label for="currency">Currency</label>
+        <select id="currency" name="currency" required aria-describedby="currency-err" data-err="Select the currency for your account.">
+          <option value="GBP" selected>GBP £</option>
+          <option value="USD">USD $</option>
+          <option value="EUR">EUR €</option>
+          <option value="CHF">CHF</option>
+        </select>
+        <span class="err" id="currency-err"></span>
+      </p>
 
-        <div class="field">
-          <label for="country">Country</label>
-          <input aria-describedby="country-err" type="text" id="country" name="country" autocomplete="country-name" required data-err="Enter your country of residence.">
-          <p class="err" id="country-err"></p>
-        </div>
-      </fieldset>
+      <p class="field">
+        <label for="deposit">Initial deposit</label>
+        <input type="number" id="deposit" name="deposit" inputmode="numeric" min="10000" step="500" placeholder="10,000" required aria-describedby="deposit-err" data-err="Enter your intended initial deposit." data-err-min="The minimum initial deposit is 10,000 in your chosen currency.">
+        <span class="err" id="deposit-err"></span>
+      </p>
 
-      <label class="declare" id="declareWrap">
-        <input aria-describedby="declaration-err" type="checkbox" id="declaration" name="declaration" required data-err="Please confirm the declaration before submitting your application.">
+      <p class="field">
+        <label for="street">Street address</label>
+        <input type="text" id="street" name="street" autocomplete="street-address" placeholder="House number and street" required aria-describedby="street-err" data-err="Enter your residential street address.">
+        <span class="err" id="street-err"></span>
+      </p>
+
+      <p class="field">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" autocomplete="address-level2" required aria-describedby="city-err" data-err="Enter your city.">
+        <span class="err" id="city-err"></span>
+      </p>
+
+      <p class="field">
+        <label for="postal">Postal code</label>
+        <input type="text" id="postal" name="postal" autocomplete="postal-code" required aria-describedby="postal-err" data-err="Enter your postal code.">
+        <span class="err" id="postal-err"></span>
+      </p>
+
+      <p class="field">
+        <label for="country">Country</label>
+        <input type="text" id="country" name="country" autocomplete="country-name" required aria-describedby="country-err" data-err="Enter your country of residence.">
+        <span class="err" id="country-err"></span>
+      </p>
+
+      <label class="declare field">
+        <input type="checkbox" id="declaration" name="declaration" required aria-describedby="declaration-err" data-err="Please confirm the declaration before submitting your application.">
         <span class="box" aria-hidden="true"></span>
-        <p>I confirm the information given is accurate and complete, and I authorise Berkyshire Capital Private Bank to verify it as part of this application.</p>
+        I confirm the information given is accurate and complete, and I authorise Berkyshire Capital Private Bank to verify it as part of this application.
+        <span class="err" id="declaration-err"></span>
       </label>
-      <p class="err declare-err" id="declaration-err"></p>
 
-      <div class="actions">
-        <button type="submit" class="primary" id="submitBtn">
+      <p class="actions">
+        <button type="submit" class="ghost" id="submitBtn">
           <span class="spinner" aria-hidden="true"></span>
           <span class="btn-label">Open my account</span>
         </button>
-      </div>
+      </p>
     </form>
-
-    <div class="talky-launch" id="talkyLaunch">
-      <button type="button" data-talkyform="launch" class="ghost talky-btn">Start Conversation</button>
-    </div>
     <script src="https://www.talkyform.com/talkyform-avatar.js" data-talkyform-id="g4UtyUR7fpzVFfxTQSNkqEie" defer></script>
 
     <div class="success" id="successPanel" hidden role="status" aria-live="polite">
@@ -884,7 +757,7 @@
   dob.min = '1900-01-01';
 
   function fieldWrap(el){
-    return el.closest('.field') || el.closest('.declare') || el.closest('.chips') || el.closest('.acct-list');
+    return el.closest('.field');
   }
 
   function setError(el, message){

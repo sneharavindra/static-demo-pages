@@ -28,7 +28,8 @@ Pure demonstration: no data is transmitted or stored; the bank entity is fiction
 - Submit behavior (confirmed): JS-intercepted validation with inline errors, brief processing state, then the form swaps to a success panel with a generated reference number and a reset option.
 - Responsive, semantic, keyboard accessible; reduced-motion respected.
 - Footer carries real product links (confirmed 2026-09-20): Privacy Policy → https://www.talkyform.com/privacy, Terms of Service → https://www.talkyform.com/terms.
-- TalkyForm conversational integration (confirmed 2026-09-20): form marked `data-talkyform="enabled"`; after the form DOM, a `data-talkyform="launch"` button ("Start Conversation") and the avatar script `https://www.talkyform.com/talkyform-avatar.js` with `data-talkyform-id="g4UtyUR7fpzVFfxTQSNkqEie"` (deferred).
+- TalkyForm conversational integration (confirmed 2026-09-20): form marked `data-talkyform="enabled"`; the `data-talkyform="launch"` button ("Start Conversation") is the primary action at the top of the form, followed by the avatar script `https://www.talkyform.com/talkyform-avatar.js` with `data-talkyform-id="g4UtyUR7fpzVFfxTQSNkqEie"` (deferred, after the form DOM).
+- Form markup simplified (user-directed 2026-09-20): a single `<form>` with flat label+input paragraphs — no fieldsets/legends or grid wrappers; radio groups are plain labelled options with `role="radiogroup"`; the manual submit is a secondary (ghost) action at the document foot.
 
 ## Brand Commitments
 
